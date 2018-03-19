@@ -57,7 +57,7 @@ abstract class CrudController extends AbstractController{
     	$this->_setValues($object, $request);
     	return $this->gui->realizeOperation(function($obj){
     		return $this->repository->update($obj);
-    	},$object, "The object <b>{$object}</b> has been updated !", "impossible to update the object <b>{$object}</b> !",$this->type."/refresh","#dt-".$this->type );
+    	},$object, "<b>{$object}</b> has been updated !", "impossible to update <b>{$object}</b> !",$this->type."/refresh","#dt-".$this->type );
     }
     
     protected function _setValues($instance,Request $request){
@@ -68,7 +68,7 @@ abstract class CrudController extends AbstractController{
     	$object=$this->repository->find($id);
     	$this->gui->execOn("click", "#cancel-btn", '$("#frm").html("");');
     	$this->gui->getOnClick("#confirm-btn", $this->type."/delete/".$id,"#frm",["attr"=>""]);
-    	return $this->gui->messageConfirmation("Remove the object <b>{$object}</b> ?","warning");
+    	return $this->gui->messageConfirmation("Remove <b>{$object}</b> from the database ?","warning");
     }
     
     protected function _delete($id,Request $request){
@@ -76,6 +76,6 @@ abstract class CrudController extends AbstractController{
     	$object=$this->repository->find($id);
     	return $this->gui->realizeOperation(function($obj){
     		return $this->repository->delete($obj);
-    	},$object,"The object <b>{$object}</b> has been deleted.", "impossible to delete the object <b>{$object}</b> !", $this->type."/refresh", "#dt-".$this->type );
+    	},$object,"<b>{$object}</b> has been deleted.", "impossible to delete <b>{$object}</b> !", $this->type."/refresh", "#dt-".$this->type );
     }
 }
