@@ -17,7 +17,7 @@ class TagsController extends Controller{
      */
     public function tags(TagsGui $gui,TagRepository $tagRepo){
     	$tags=$tagRepo->findAll();
-    	$gui->dataTable($tags);
+    	$gui->dataTable($tags,'tags');
     	return $gui->renderView('Tags/td3/index.html.twig');;
     }
 

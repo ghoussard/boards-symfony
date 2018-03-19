@@ -10,9 +10,9 @@ use Ajax\service\JArray;
 class ProjectsGui extends SemanticGui{
 
 	public function buttons(){
-		$bts=$this->_semantic->htmlButtonGroups("bts",["Projects","Tags","dataTable projects"]);
-		$bts->setPropertyValues("data-url", ["projects","tags","projectsSem"]);
-		$bts->addIcons(["folder","tags","folder"]);
+		$bts=$this->_semantic->htmlButtonGroups("bts",["Projects","Tags"]);
+		$bts->setPropertyValues("data-url", ["projects","tags"]);
+		$bts->addIcons(["folder","tags"]);
 		$bts->getOnClick("td3","#response",["attr"=>"data-url"]);
 	}
 
