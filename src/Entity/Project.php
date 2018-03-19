@@ -67,7 +67,8 @@ class Project
 
     public function __construct(){
     	$this->stories=new ArrayCollection();
-    	$this->owner="";
+    	$this->idOwner="";
+    	$this->name="New project name";
     }
 	/**
 	 * @return number

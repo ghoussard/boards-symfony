@@ -24,7 +24,6 @@ abstract class MainRepository extends ServiceEntityRepository{
 			$accessor="set" . ucfirst($key);
 			if (method_exists($object, $accessor)) {
 				$object->$accessor($value);
-				$object->_rest[$key]=$value;
 			}
 		}
 	}
