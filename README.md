@@ -21,4 +21,4 @@ You will need the following things properly installed on your computer.
 ## Running / Development
 
 * `php bin/console server:run`
-* Visit your app at [http://localhost:8000](http://localhost:8000).
+* Visit your app at [http://127.0.0.1:8000](http://127.0.0.1:8000).
