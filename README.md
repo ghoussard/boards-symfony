@@ -1,7 +1,6 @@
 # boards-symfony
 
 This README outlines the details of collaborating on this Symfony application.
-A short introduction of this app could easily go here.
 
 ## Prerequisites
 
