@@ -16,7 +16,7 @@ You will need the following things properly installed on your computer.
 * `git clone <repository-url>` this repository
 * `cd boards-symfony`
 * `composer update`
-* install database
+* Run the database creation script (`dataBase/projects.sql`) on your mariaDb / mysql server
 
 ## Running / Development
 
