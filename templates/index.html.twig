@@ -1,0 +1,8 @@
+{% extends "base.html.twig" %}
+{%  block body %}
+    <a href="td3" class="ui button" data-ajax="td3">Td n°3</a>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ script_foot | raw }}
+{% endblock %}
