@@ -26,7 +26,7 @@ class TagsGui extends SemanticGui{
 		$colors = Color::getConstants();
 		$df = $this->_semantic->dataForm("frm-".$type, $tag);
 		$df->setFields(["title\n","id\n", "title", "color"]);
-		$df->setCaptions(["Modification", "", "Identity", "Color"]);
+		$df->setCaptions(["Modification", "", "Title", "Color"]);
 		$df->fieldAsMessage(0, ["icon" => "info circle"]);
 		$df->fieldAsHidden(1);
 		$df->fieldAsDropDown(3, \array_combine($colors, $colors));
