@@ -29,4 +29,21 @@ class Step
     private $title;
 
 
+    public function __toString() {
+	    return $this->title;
+    }
+
+	/**
+	 * @return int
+	 */
+	public function getId(): int {
+		return $this->id;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getTitle(): string {
+		return $this->title;
+	}
 }
