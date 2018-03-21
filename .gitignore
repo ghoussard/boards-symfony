@@ -15,5 +15,3 @@
 .settings/
 
 .idea/
-composer.lock
-symfony.lock
