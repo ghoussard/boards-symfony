@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Tag;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use App\Repository\TagRepository;
 use App\Services\semantic\TagsGui;
+use Symfony\Component\HttpFoundation\Request;
 
 class TagsController extends CrudController {
 
@@ -21,5 +23,30 @@ class TagsController extends CrudController {
 	 */
 	public function index() {
 		return $this->_index();
+	}
+
+	/**
+	 * @Route("/tags/refresh", name="tags_refresh")
+	 */
+	public function refresh() {
+		return $this->_refresh();
+	}
+
+	/**
+	 * @Route("/tags/edit/{id}", name="tags_edit")
+	 * @param $id
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function edit($id) {
+		return $this->_edit($id);
+	}
+
+	/**
+	 * @Route("tags/update", name="tags_update")
+	 * @param Request $request
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function update(Request $request) {
+		return $this->_update($request, Tag::class);
 	}
 }
