@@ -42,6 +42,14 @@ class TagsController extends CrudController {
 	}
 
 	/**
+	 * @Route("/tags/new", name="tags_new")
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function add() {
+		return $this->_add(Tag::class);
+	}
+
+	/**
 	 * @Route("tags/update", name="tags_update")
 	 * @param Request $request
 	 * @return \Symfony\Component\HttpFoundation\Response
