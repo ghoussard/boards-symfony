@@ -14,7 +14,7 @@ use Ajax\semantic\html\elements\HtmlButton;
 class ProjectsGui extends SemanticGui{
 
 	public function buttons(){
-		$bts=$this->_semantic->htmlButtonGroups("bts",["Projects","Tags"]);
+		$bts=$this->_semantic->htmlButtonGroups("bts",["Projects","tags"]);
 		$bts->setPropertyValues("data-url", ["projects","tags"]);
 		$bts->addIcons(["folder","tags"]);
 		$bts->getOnClick("td3","#response",["attr"=>"data-url"]);
