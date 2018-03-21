@@ -13,3 +13,7 @@
 .project
 .buildpath
 .settings/
+
+.idea/
+composer.lock
+symfony.lock
