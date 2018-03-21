@@ -48,7 +48,7 @@ class ProjectsGui extends SemanticGui{
 		$dt->onPreCompile(function () use (&$dt) {
 			$dt->getHtmlComponent()->colRight(5);
 		});
-		$dt->insertEditButtonIn(5, "",false,function($bt){$bt->addClass("basic circular see")->asIcon("eye");});
+		$dt->insertInFieldButton(5, "",false,function($bt){$bt->addClass("basic circular see")->asIcon("eye");});
 		$dt->setUrls(["edit"=>"projects/edit","delete"=>"projects/confirmDelete"]);
 		$this->getOnClick(".see", "project","#block-body",["attr"=>"data-ajax"]);
 		$dt->setTargetSelector("#frm");
