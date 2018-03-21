@@ -62,4 +62,27 @@ class StepsController extends CrudController
 	public function update(Request $request){
 		return $this->_update($request, Step::class);
 	}
+
+
+	/**
+	 * @Route("steps/confirmDelete/{id}", name="steps_confirm_delete")
+	 * @param $id
+	 *
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function confirmDelete($id) {
+		return $this->_deleteConfirm($id);
+	}
+
+
+	/**
+	 * @Route("steps/delete/{id}", name="steps_delete")
+	 * @param Request $request
+	 * @param $id
+	 *
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function delete(Request $request, $id) {
+		return $this->_delete($id, $request);
+	}
 }
