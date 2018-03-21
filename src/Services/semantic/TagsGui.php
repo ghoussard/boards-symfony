@@ -16,8 +16,15 @@ class TagsGui extends SemanticGui{
 			$lbl->setColor($tag->getColor());
 			return $lbl;
 		});
-		$dt->addEditButton(true,["ajaxTransition"=>"random"]);
-		$dt->setUrls(["edit"=>"tags/edit"]);
+		$dt->addEditDeleteButtons(false, [ "ajaxTransition" => "random","hasLoader"=>false ], function ($bt) {
+			$bt->addClass("circular");
+		}, function ($bt) {
+			$bt->addClass("circular");
+		});
+		$dt->onPreCompile(function () use (&$dt) {
+			$dt->getHtmlComponent()->colRight(1);
+		});
+		$dt->setUrls(["edit"=>"tags/edit","delete"=>"tags/confirmDelete"]);
 		$dt->setTargetSelector("#frm");
 		return $dt;
 	}

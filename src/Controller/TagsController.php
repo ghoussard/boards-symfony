@@ -57,4 +57,24 @@ class TagsController extends CrudController {
 	public function update(Request $request) {
 		return $this->_update($request, Tag::class);
 	}
+
+	/**
+	 * @Route("tags/confirmDelete/{id}", name="tags_confirm_delete")
+	 * @param $id
+	 *
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function deleteConfirm($id) {
+		return $this->_deleteConfirm($id);
+	}
+
+	/**
+	 * @Route("tags/delete/{id}", name="tags_delete")
+	 * @param $id
+	 * @param Request $request
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function delete($id, Request $request) {
+		return $this->_delete($id, $request);
+	}
 }
