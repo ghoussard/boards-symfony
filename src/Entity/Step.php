@@ -46,4 +46,18 @@ class Step
 	public function getTitle(): string {
 		return $this->title;
 	}
+
+	/**
+	 * @param string $title
+	 */
+	public function setTitle( string $title ): void {
+		$this->title = $title;
+	}
+
+	/**
+	 * @param int $id
+	 */
+	public function setId( int $id ): void {
+		$this->id = $id;
+	}
 }

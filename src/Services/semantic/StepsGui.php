@@ -30,4 +30,16 @@ class StepsGui extends SemanticGui {
 		return $dt;
 	}
 
+	public function dataForm($step, $type, $di = null){
+		$df=$this->_semantic->dataForm("frm-".$type, $step);
+		$df->setFields(["title\n","id\n","title"]);
+		$df->setCaptions(["Modification","","Title"]);
+		$df->fieldAsMessage(0,["icon"=>"info circle"]);
+		$df->fieldAsHidden(1);
+		$df->fieldAsInput("title",["rules"=>"empty"]);
+		$df->setValidationParams(["on"=>"blur","inline"=>true]);
+		$df->setSubmitParams("steps/update","#frm",["attr"=>"","hasLoader"=>false]);
+		return $df;
+	}
+
 }
