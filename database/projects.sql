@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  lun. 19 mars 2018 à 03:46
+-- Généré le :  mer. 21 mars 2018 à 00:00
 -- Version du serveur :  10.1.30-MariaDB
 -- Version de PHP :  7.2.1
 
@@ -72,7 +72,8 @@ INSERT INTO `project` (`id`, `name`, `description`, `startDate`, `dueDate`, `idO
 (4, 'Codecov', 'Group, merge, archive and compare coverage reports', '2017-10-09', '2018-03-13', NULL),
 (5, 'ZenHub', 'Agile Task Boards, Epics, Estimates and Reports, all within GitHub\'s UI', '2016-11-14', '2018-03-13', NULL),
 (6, 'EmberJS', '', '2018-03-01', '2018-03-01', 10),
-(7, 'MongoDb', 'no SQL database', '2018-03-01', '2018-03-24', 8);
+(7, 'MongoDb', 'no SQL database', '2018-03-01', '2018-03-24', 8),
+(15, 'Codacy', 'Automated code reviews to help developers ship better software, faster', '2018-03-20', '2018-03-31', 9);
 
 -- --------------------------------------------------------
 
@@ -117,8 +118,8 @@ CREATE TABLE `story` (
 --
 
 INSERT INTO `story` (`id`, `code`, `descriptif`, `tags`, `step`, `idDeveloper`, `idProject`) VALUES
-(1, 'BO1', 'Lister les projets', 'UC', 'todo', NULL, 1),
-(2, 'BO2', 'Lister les stories', 'UC', 'todo', NULL, 1);
+(1, 'BO1', 'Lister les projets', '1,2,3', 'todo', NULL, 1),
+(2, 'BO2', 'Lister les stories', '1,4', 'todo', 8, 1);
 
 -- --------------------------------------------------------
 
@@ -219,13 +220,13 @@ ALTER TABLE `task`
 -- AUTO_INCREMENT pour la table `developer`
 --
 ALTER TABLE `developer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT pour la table `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `step`
