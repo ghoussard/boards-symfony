@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
 
 abstract class MainRepository extends ServiceEntityRepository{
  
@@ -59,5 +60,42 @@ abstract class MainRepository extends ServiceEntityRepository{
     		$result=false;
     	}
     	return $result;
+    }
+    
+    /**
+     * Finds entities by an array of ids or a string with a comma separator
+     * @param string $ids
+     * @return array
+     */
+    public function getFromIds($ids){
+    	if(isset($ids)){
+    		$ids=explode(",", $ids);
+    		return $this->findBy(['id'=>$ids]);
+    	}
+    	return [];
+    }
+    
+    /**
+     * Returns the names of the model classes
+     * @param ManagerRegistry $doctrine
+     * @return array
+     */
+    public static function getModelNames($doctrine){
+    	$entities = array();
+    	$em = $doctrine->getManager();
+    	$meta = $em->getMetadataFactory()->getAllMetadata();
+    	foreach ($meta as $m) {
+    		$entities[] = $m->getName();
+    	}
+    	return $entities;
+    }
+    
+    /**
+     * Returns the model name associated with this repository
+     * @return string
+     */
+    public function getModelName(){
+    	$r=new \ReflectionClass($this->_entityName);
+    	return $r->getShortName();
     }
 }

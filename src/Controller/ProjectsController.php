@@ -7,6 +7,7 @@ use App\Services\semantic\ProjectsGui;
 use App\Repository\ProjectRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\DeveloperRepository;
+use App\Repository\TagRepository;
 
 class ProjectsController extends CrudController{
 
@@ -94,5 +95,15 @@ class ProjectsController extends CrudController{
 	    	$dev=$devRepo->find($request->get("idOwner"));
     		$instance->setOwner($dev);
     	}
+    }
+    
+    /**
+     * @Route("/project/{idProject}", name="project_stories")
+     */
+    public function stories($idProject,TagRepository $tagRepo){
+    	$project=$this->repository->get($idProject);
+    	$this->gui->getOnClick(".nav-stories", "","#block-body",["attr"=>"data-ajax"]);
+    	$this->gui->listStories($project->getStories(),$tagRepo);
+    	return $this->gui->renderView("projects/stories.html.twig",["project"=>$project]);
     }
 }

@@ -6,6 +6,10 @@ namespace App\Services\semantic;
 use Ajax\semantic\html\elements\HtmlLabel;
 use Ajax\semantic\html\elements\HtmlInput;
 use Ajax\service\JArray;
+use App\Entity\Story;
+use Ajax\semantic\html\content\HtmlListItem;
+use App\Repository\TagRepository;
+use Ajax\semantic\html\elements\HtmlButton;
 
 class ProjectsGui extends SemanticGui{
 
@@ -44,7 +48,9 @@ class ProjectsGui extends SemanticGui{
 		$dt->onPreCompile(function () use (&$dt) {
 			$dt->getHtmlComponent()->colRight(5);
 		});
+		$dt->insertEditButtonIn(5, "",false,function($bt){$bt->addClass("basic circular see")->asIcon("eye");});
 		$dt->setUrls(["edit"=>"projects/edit","delete"=>"projects/confirmDelete"]);
+		$this->getOnClick(".see", "project","#block-body",["attr"=>"data-ajax"]);
 		$dt->setTargetSelector("#frm");
 		return $dt;
 	}
@@ -66,6 +72,28 @@ class ProjectsGui extends SemanticGui{
 		$df->setValidationParams(["on"=>"blur","inline"=>true]);
 		$df->setSubmitParams("projects/update","#frm",["attr"=>"","hasLoader"=>false]);
 		return $df;
+	}
+	
+	public function listStories($stories,TagRepository $tagRepo){
+		$list=$this->_semantic->htmlList("list-stories");
+		$list->fromDatabaseObjects($stories, function(Story $story) use($tagRepo){
+			$item=new HtmlListItem("list-story-".$story->getId(),["icon"=>"file big","header"=>$story->getCode(),"description"=>$story->getDescriptif()]);
+			$tags=$tagRepo->getFromIds($story->getTags());
+			foreach ($tags as $tag){
+				$lbl=new HtmlLabel("",$tag->getTitle(),"tag","span");
+				$lbl->setColor($tag->getColor());
+				$item->addContent($lbl);
+			}
+			$dev="Not assigned";
+			if($story->getDeveloper()!=null){
+				$dev=$story->getDeveloper()->getIdentity();
+			}
+			$bt=HtmlButton::labeled("story-bt-".$story->getId(), $dev, "edit");
+			$item->addRightContent($bt,true);
+			return $item;
+		});
+		$list->addClass("middle aligned relaxed");
+		return $list;
 	}
 }
 

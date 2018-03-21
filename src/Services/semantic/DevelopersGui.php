@@ -2,7 +2,6 @@
 namespace App\Services\semantic;
 
 
-use App\Entity\Developer;
 
 class DevelopersGui extends SemanticGui{
 	
