@@ -12,7 +12,7 @@ use App\Services\semantic\SemanticGui;
  * @author jc
  *
  */
-abstract class CrudController extends AbstractController implements ICrud{
+abstract class CrudController extends AbstractController{
 	protected $type;
 	protected $icon;
 	protected $subHeader;
