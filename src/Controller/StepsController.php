@@ -36,6 +36,14 @@ class StepsController extends CrudController
 	}
 
 	/**
+	 * @Route("/steps/new", name="steps_new")
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
+	public function add() {
+		return $this->_add(Step::class);
+	}
+
+	/**
 	 * @Route("/steps/edit/{id}", name="steps_edit")
 	 * @param $id
 	 *
