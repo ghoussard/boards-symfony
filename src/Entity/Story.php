@@ -63,7 +63,7 @@ class Story
     /**
      * @var \App\Entity\Project
      *
-     * @ORM\ManyToOne(targetEntity="Project")
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="stories")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idProject", referencedColumnName="id")
      * })
