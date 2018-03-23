@@ -37,6 +37,12 @@ class Task
      * })
      */
     private $story;
+
+
+    public function __construct() {
+        $this->idStory = "";
+    }
+
 	/**
 	 * @return string
 	 */
@@ -66,5 +72,7 @@ class Task
 	}
 
 
-
+	public function __toString() {
+		return $this->content;
+	}
 }
