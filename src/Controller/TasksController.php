@@ -53,6 +53,15 @@ class TasksController extends CrudController
     	return $this->_edit($id, $repository->getAll());
     }
 
+	/**
+	 * @Route("/tasks/new", name="tasks_new")
+	 * @return Response
+	 */
+    public function add(StoryRepository $storyRepository) {
+    	$stories = $storyRepository->findAll();
+    	return $this->_add(Task::class, $stories);
+    }
+
 
 	/**
 	 * @Route("/tasks/update", name="tasks_update")
