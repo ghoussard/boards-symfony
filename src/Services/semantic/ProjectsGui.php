@@ -89,7 +89,7 @@ class ProjectsGui extends SemanticGui{
 				$dev=$story->getDeveloper()->getIdentity();
 			}
 			$bt=HtmlButton::labeled("story-bt-".$story->getId(), $dev, "edit");
-			$item->addRightContent($bt,true);
+			$item->addContent($bt,true);
 			return $item;
 		});
 		$list->addClass("middle aligned relaxed");
