@@ -73,6 +73,7 @@ class TasksController extends CrudController
     	return $this->_update($request, Task::class);
     }
 
+
 	protected function _setValues($instance, Request $request){
 		parent::_setValues($instance, $request);
 		$entityManager = $this->getDoctrine()->getManager();
@@ -81,5 +82,28 @@ class TasksController extends CrudController
 			$story = $storyRepo->find($request->get("idStory"));
 			$instance->setStory($story);
 		}
+	}
+
+
+	/**
+	 * @Route("/tasks/confirmDelete/{id}", name="tasks_confirm_delete")
+	 * @param $id
+	 *
+	 * @return Response
+	 */
+	public function confirmDelete($id) {
+    	return $this->_deleteConfirm($id);
+	}
+
+
+	/**
+	 * @Route("tasks/delete/{id}", name="tasks_delete")
+	 * @param $id
+	 * @param Request $request
+	 *
+	 * @return Response
+	 */
+	public function delete($id, Request $request) {
+		return $this->_delete($id, $request);
 	}
 }
