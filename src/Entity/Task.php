@@ -41,6 +41,7 @@ class Task
 
     public function __construct() {
         $this->idStory = "";
+        $this->content = "New Task";
     }
 
 	/**

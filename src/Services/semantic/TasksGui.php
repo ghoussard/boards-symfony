@@ -52,7 +52,7 @@ class TasksGui extends SemanticGui {
 		$df->setCaptions(["Modification", "", "Content", "Story"]);
 		$df->fieldAsMessage(0, ["icon" => "info circle"]);
 		$df->fieldAsHidden(1);
-		$df->fieldAsDropDown(3, JArray::modelArray($di, 'getId', 'getDescriptif'));
+		$df->fieldAsDropDown("idStory", JArray::modelArray($di, 'getId', 'getDescriptif'));
 		$df->fieldAsInput( "content", [ "rules" => "empty" ] );
 		$df->setValidationParams( [ "on" => "blur", "inline" => true ] );
 		$df->setSubmitParams( "tasks/update", "#frm", [ "attr" => "", "hasLoader" => false ] );

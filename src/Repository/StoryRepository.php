@@ -10,11 +10,11 @@ namespace App\Repository;
 
 
 use App\Entity\Story;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class StoryRepository extends MainRepository {
 
-	public function __construct(ManagerRegistry $registry) {
+	public function __construct(RegistryInterface $registry) {
 		parent::__construct($registry, Story::class);
 	}
 

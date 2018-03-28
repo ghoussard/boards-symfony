@@ -3,11 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Step;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class StepRepository extends MainRepository {
 
-	public function __construct( ManagerRegistry $registry) {
+	public function __construct( RegistryInterface $registry) {
 		parent::__construct( $registry, Step::class);
 	}
 

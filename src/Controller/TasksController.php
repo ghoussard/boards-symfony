@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Story;
 use App\Entity\Task;
 use App\Repository\StoryRepository;
 use App\Repository\TaskRepository;
@@ -62,4 +63,14 @@ class TasksController extends CrudController
     public function update(Request $request) {
     	return $this->_update($request, Task::class);
     }
+
+	protected function _setValues($instance, Request $request){
+		parent::_setValues($instance, $request);
+		$entityManager = $this->getDoctrine()->getManager();
+		$storyRepo = $entityManager->getRepository(Story::class);
+		if($request->get("idStory")!=null){
+			$story = $storyRepo->find($request->get("idStory"));
+			$instance->setStory($story);
+		}
+	}
 }
