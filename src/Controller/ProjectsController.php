@@ -103,7 +103,15 @@ class ProjectsController extends CrudController{
     public function stories($idProject,TagRepository $tagRepo){
     	$project=$this->repository->get($idProject);
     	$this->gui->getOnClick(".nav-stories", "","#block-body",["attr"=>"data-ajax"]);
+    	$this->gui->getOnClick("#board-bt", "", "#board-container", ["attr"=>"data-ajax"]);
     	$this->gui->listStories($project->getStories(),$tagRepo);
     	return $this->gui->renderView("projects/stories.html.twig",["project"=>$project]);
+    }
+
+	/**
+	 * @Route("/project/{id}/board", name="project_board")
+	 */
+    public function board($id) {
+    	return $this->gui->renderView("projects/board.html.twig");
     }
 }
