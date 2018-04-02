@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\StepRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use App\Services\semantic\SemanticGui;
@@ -122,4 +123,20 @@ abstract class CrudController extends AbstractController{
     		return $this->repository->delete($obj);
     	},$object,"<b>{$object}</b> has been deleted.", "impossible to delete <b>{$object}</b> !", $this->type."/refresh", "#dt-".$this->type );
     }
+
+	/**
+	 * @param $project
+	 * @param StepRepository $stepRepo
+	 * @return array
+	 */
+	protected function getStepsAndStories($project,StepRepository $stepRepo){
+		$steps=$stepRepo->findAll();
+		$stories=$project->getStories()->toArray();
+		foreach ($steps as $step){
+			$step->stories=array_filter($stories,function($story) use($step){
+				return ($story->getStep()==$step->getTitle());
+			});
+		}
+		return $steps;
+	}
 }

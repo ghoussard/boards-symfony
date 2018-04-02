@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\StepRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use App\Services\semantic\ProjectsGui;
 use App\Repository\ProjectRepository;
@@ -110,8 +111,20 @@ class ProjectsController extends CrudController{
 
 	/**
 	 * @Route("/project/{id}/board", name="project_board")
+	 * @param $id
+	 * @param StepRepository $stepRepository
+	 * @param TagRepository $tagRepository
+	 *
+	 * @return \Symfony\Component\HttpFoundation\Response
 	 */
-    public function board($id) {
+    public function board($id, StepRepository $stepRepository, TagRepository $tagRepository) {
+    	$steps = $this->getStepsAndStories($this->repository->find($id), $stepRepository);
+
+    	$this->gui->board($steps, $tagRepository);
+
+	    $this->gui->setDraggable(".drag-item",["attr"=>"data-ajax"]);
+	    $this->gui->asDropZone(".drop-zone");
+
     	return $this->gui->renderView("projects/board.html.twig");
     }
 }
