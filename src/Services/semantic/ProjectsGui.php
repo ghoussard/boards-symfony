@@ -76,24 +76,38 @@ class ProjectsGui extends SemanticGui{
 	}
 	
 	public function listStories($stories,TagRepository $tagRepo){
-		$list=$this->_semantic->htmlList("list-stories");
-		$list->fromDatabaseObjects($stories, function(Story $story) use($tagRepo){
-			$item=new HtmlListItem("list-story-".$story->getId(),["icon"=>"file big","header"=>$story->getCode(),"description"=>$story->getDescriptif()]);
-			$tags=$tagRepo->getFromIds($story->getTags());
+		$list = $this->_semantic->htmlList("list-stories");
+
+		$list->fromDatabaseObjects($stories, function(Story $story) use ($tagRepo) {
+			$item = new HtmlListItem("list-story-".$story->getId(),["icon"=>"file big","header"=>$story->getCode(),"description"=>$story->getDescriptif()]);
+			$tags = $tagRepo->getFromIds($story->getTags());
+
 			foreach ($tags as $tag){
 				$lbl=new HtmlLabel("",$tag->getTitle(),"tag","span");
 				$lbl->setColor($tag->getColor());
 				$item->addContent($lbl);
 			}
+
 			$dev="Not assigned";
 			if($story->getDeveloper()!=null){
-				$dev=$story->getDeveloper()->getIdentity();
+				$dev = $story->getDeveloper()->getIdentity();
 			}
-			$bt=HtmlButton::labeled("story-bt-".$story->getId(), $dev, "edit");
-			$item->addContent($bt,true);
+
+			$lblBt = $this->_semantic->htmlLabel("", $dev, "user");
+			$lblBt->setClass("ui basic right pointing label right aligned");
+			$btnBt = $this->_semantic->htmlButton("", "<i class=\"folder open icon\"></i> Open");
+
+			$bt = $this->_semantic->htmlContainer("story-bt-".$story->getId());
+			$bt->setClass("ui left labeled button");
+			$bt->setContent($lblBt.$btnBt);
+
+			$item->addRightContent($bt);
+
 			return $item;
+
 		});
-		$list->addClass("middle aligned relaxed");
+
+		$list->addClass("middle aligned divided");
 		return $list;
 	}
 
