@@ -1,8 +1,35 @@
 {% extends "base.html.twig" %}
 {%  block body %}
-<div class="ui tall stacked segment">
-  <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-</div>
+
+    <div class="ui divided items">
+
+        {% for model in models %}
+
+            <div class="item">
+                <div class="content">
+                    <div class="meta">
+                        <span>items counts</span>
+                    </div>
+                    <a class="header">{{ model }}</a>
+                    <div class="description">
+                        <div class="ui buttons">
+                            <div class="ui basic black button">
+                                <i class="eye icon"></i>
+                                See all
+                            </div>
+                            <div class="ui basic black button">
+                                <i class="plus icon"></i>
+                                Add new...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
